@@ -134,4 +134,4 @@ def process_game_id(message, diamonds, price):
 # បើកដំណើរការ Server និង Bot
 keep_alive()
 print("Bot កំពុងដំណើរការ...")
-bot.infinity_polling()
+bot.infinity_polling(timeout=60, long_polling_timeout=60)
