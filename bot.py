@@ -131,7 +131,14 @@ def process_game_id(message, diamonds, price):
             parse_mode="Markdown"
         )
 
-# បើកដំណើរការ Server និង Bot
-keep_alive()
-print("Bot កំពុងដំណើរការ...")
-bot.infinity_polling(timeout=60, long_polling_timeout=60)
+import time
+
+# កូដការពារការដាច់ connection (Auto-reconnect loop)
+while True:
+    try:
+        print("Bot កំពុងចាប់ផ្តើមដំណើរការ polling...")
+        bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    except Exception as e:
+        print(f"មានបញ្តាបណ្តាញដាច់ (Error): {e}")
+        print("កំពុងព្យាយាមតភ្ជាប់ឡើងវិញក្នុងរយៈពេល 5 វិនាទី...")
+        time.sleep(5)
