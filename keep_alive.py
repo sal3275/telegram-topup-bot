@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from threading import Thread
 
@@ -8,7 +9,9 @@ def home():
     return "Bot is running 24/7!"
 
 def run():
-    app.run(host='0.0.0.0', port=8080)
+    # យក Port ពី Render ដោយស្វ័យប្រវត្តិ
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
 
 def keep_alive():
     t = Thread(target=run)
